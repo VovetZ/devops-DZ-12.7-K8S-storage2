@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+  labels:
+    app: pv1
+  namespace: default
+spec:
+  storageClassName: storageclass1
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: "/i_am_node/pv1"
+  persistentVolumeReclaimPolicy: Delete

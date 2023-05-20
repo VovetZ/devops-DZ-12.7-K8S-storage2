@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy2
+  labels:
+    app: deploy2
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy2
+  template:
+    metadata:
+      labels:
+        app: deploy2
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: volume-2
+              mountPath: /input
+      volumes:
+        - name: volume-2
+          persistentVolumeClaim:
+            claimName: pvc2

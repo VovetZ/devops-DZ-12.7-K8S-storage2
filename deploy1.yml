@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy1
+  labels:
+    app: deploy1
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy1
+  template:
+    metadata:
+      labels:
+        app: deploy1
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: ['sh', '-c', 'сnt=1; datafile="/out/datafile.txt"; while true; do echo "$((cnt++)) | $(date)" >> $datafile; sleep 5; done']
+          volumeMounts:
+            - name: vol1
+              mountPath: /out
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: vol1
+              mountPath: /in
+      volumes:
+        - name: vol1
+          persistentVolumeClaim:
+            claimName: pvc1
