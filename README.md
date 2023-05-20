@@ -409,7 +409,7 @@ To check CSI NFS Driver pods status, please run:
 
 ### 2. Создать Deployment приложения состоящего из multitool, и подключить к нему PV, созданный автоматически на сервере NFS
 
-Создадим `storageclass2.yml` с развёртыванием класса хранилища.
+Создадим `storageclass2.yml` с развёртыванием класса хранилища, где укажем адрес NFS сервера и путь до шары на нём
 
 <details><summary>Посмотреть YAML...</summary>
 
@@ -436,8 +436,6 @@ mountOptions:
 </details>
 
 [Ссылка на storageclass2.yml](storageclass2.yml)
-
-Укажем адрес NFS сервера и путь до шары на нём.
 
 Запустим развёртывание
 
